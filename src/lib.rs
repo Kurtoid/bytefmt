@@ -207,6 +207,41 @@ pub fn format(bytes: u64) -> String {
 
     format_to(bytes, Unit::PB)
 }
+/// Format bytes to byte string
+/// Uses base two units: format_base2(1024) -> 1KiB
+/// # Examples
+///
+/// ```
+/// assert_eq!(bytefmt::format(123), "123 B");
+/// assert_eq!(bytefmt::format(1_230), "1.23 KB");
+/// assert_eq!(bytefmt::format(1_230_000), "1.23 MB");
+/// assert_eq!(bytefmt::format(1_230_000_000), "1.23 GB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000), "1.23 TB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000_000), "1.23 PB");
+/// ```
+pub fn format_base2(bytes: u64) -> String {
+    if bytes < KIB {
+        return format_to(bytes, Unit::B);
+    }
+
+    if bytes < MIB {
+        return format_to(bytes, Unit::KIB);
+    }
+
+    if bytes < GIB {
+        return format_to(bytes, Unit::MIB);
+    }
+
+    if bytes < TIB {
+        return format_to(bytes, Unit::GIB);
+    }
+
+    if bytes < PIB {
+        return format_to(bytes, Unit::TIB);
+    }
+
+    format_to(bytes, Unit::PIB)
+}
 
 /// Format bytes to specific unit byte string
 ///
