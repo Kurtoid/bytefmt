@@ -22,7 +22,7 @@ bytefmt = "0.1.7"
 extern crate bytefmt;
 
 fn main() {
-    let input = "1.23 MB";
+    let input = "1.23MB";
 
     // Parse string into bytes
     let bytes: u64 = bytefmt::parse(input).unwrap();
@@ -38,6 +38,6 @@ fn main() {
 
     // Format to specific unit
     let kb_str = bytefmt::format_to(bytes, bytefmt::Unit::KB);
-    assert_eq!(&kb_str, "1230 KB");
+    assert_eq!(&kb_str, "1230KB");
 }
 ```

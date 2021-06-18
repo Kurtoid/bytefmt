@@ -8,7 +8,7 @@
 //! extern crate bytefmt;
 //!
 //! fn main() {
-//!     let input = "1.23 MB";
+//!     let input = "1.23MB";
 //!
 //!     // Parse string into bytes
 //!     let bytes: u64 = bytefmt::parse(input).unwrap();
@@ -24,7 +24,7 @@
 //!
 //!     // Format to specific unit
 //!     let kb_str = bytefmt::format_to(bytes, bytefmt::Unit::KB);
-//!     assert_eq!(&kb_str, "1230 KB");
+//!     assert_eq!(&kb_str, "1230KB");
 //! }
 //! ```
 ////////////////////////////////////////////////////////////////////////////////
@@ -177,12 +177,12 @@ pub fn parse_to<S: Into<String>>(str: S, result_unit: Unit) -> Result<f64, &'sta
 /// # Examples
 ///
 /// ```
-/// assert_eq!(bytefmt::format(123), "123 B");
-/// assert_eq!(bytefmt::format(1_230), "1.23 KB");
-/// assert_eq!(bytefmt::format(1_230_000), "1.23 MB");
-/// assert_eq!(bytefmt::format(1_230_000_000), "1.23 GB");
-/// assert_eq!(bytefmt::format(1_230_000_000_000), "1.23 TB");
-/// assert_eq!(bytefmt::format(1_230_000_000_000_000), "1.23 PB");
+/// assert_eq!(bytefmt::format(123), "123B");
+/// assert_eq!(bytefmt::format(1_230), "1.23KB");
+/// assert_eq!(bytefmt::format(1_230_000), "1.23MB");
+/// assert_eq!(bytefmt::format(1_230_000_000), "1.23GB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000), "1.23TB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000_000), "1.23PB");
 /// ```
 pub fn format(bytes: u64) -> String {
     if bytes < KB {
@@ -212,12 +212,12 @@ pub fn format(bytes: u64) -> String {
 /// # Examples
 ///
 /// ```
-/// assert_eq!(bytefmt::format(123), "123 B");
-/// assert_eq!(bytefmt::format(1_230), "1.23 KB");
-/// assert_eq!(bytefmt::format(1_230_000), "1.23 MB");
-/// assert_eq!(bytefmt::format(1_230_000_000), "1.23 GB");
-/// assert_eq!(bytefmt::format(1_230_000_000_000), "1.23 TB");
-/// assert_eq!(bytefmt::format(1_230_000_000_000_000), "1.23 PB");
+/// assert_eq!(bytefmt::format(123), "123B");
+/// assert_eq!(bytefmt::format(1_230), "1.23KB");
+/// assert_eq!(bytefmt::format(1_230_000), "1.23MB");
+/// assert_eq!(bytefmt::format(1_230_000_000), "1.23GB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000), "1.23TB");
+/// assert_eq!(bytefmt::format(1_230_000_000_000_000), "1.23PB");
 /// ```
 pub fn format_base2(bytes: u64) -> String {
     if bytes < KIB {
@@ -248,10 +248,10 @@ pub fn format_base2(bytes: u64) -> String {
 /// # Examples
 ///
 /// ```
-/// assert_eq!(bytefmt::format_to(1245, bytefmt::Unit::KB), "1.25 KB");
-/// assert_eq!(bytefmt::format_to(1275, bytefmt::Unit::KIB), "1.25 KiB");
-/// assert_eq!(bytefmt::format_to(500, bytefmt::Unit::KB), "0.5 KB");
-/// assert_eq!(bytefmt::format_to(512, bytefmt::Unit::KIB), "0.5 KiB");
+/// assert_eq!(bytefmt::format_to(1245, bytefmt::Unit::KB), "1.25KB");
+/// assert_eq!(bytefmt::format_to(1275, bytefmt::Unit::KIB), "1.25KiB");
+/// assert_eq!(bytefmt::format_to(500, bytefmt::Unit::KB), "0.5KB");
+/// assert_eq!(bytefmt::format_to(512, bytefmt::Unit::KIB), "0.5KiB");
 /// ```
 pub fn format_to(bytes: u64, unit: Unit) -> String {
     let result = match unit {
@@ -274,17 +274,17 @@ pub fn format_to(bytes: u64, unit: Unit) -> String {
         .to_string();
 
     match unit {
-        Unit::B => str.push_str(" B"),
-        Unit::KB => str.push_str(" KB"),
-        Unit::MB => str.push_str(" MB"),
-        Unit::GB => str.push_str(" GB"),
-        Unit::TB => str.push_str(" TB"),
-        Unit::PB => str.push_str(" PB"),
-        Unit::KIB => str.push_str(" KiB"),
-        Unit::MIB => str.push_str(" MiB"),
-        Unit::GIB => str.push_str(" GiB"),
-        Unit::TIB => str.push_str(" TiB"),
-        Unit::PIB => str.push_str(" PiB"),
+        Unit::B => str.push_str("B"),
+        Unit::KB => str.push_str("KB"),
+        Unit::MB => str.push_str("MB"),
+        Unit::GB => str.push_str("GB"),
+        Unit::TB => str.push_str("TB"),
+        Unit::PB => str.push_str("PB"),
+        Unit::KIB => str.push_str("KiB"),
+        Unit::MIB => str.push_str("MiB"),
+        Unit::GIB => str.push_str("GiB"),
+        Unit::TIB => str.push_str("TiB"),
+        Unit::PIB => str.push_str("PiB"),
     }
 
     str
@@ -385,44 +385,44 @@ mod tests {
 
     #[test]
     fn test_format() {
-        assert_eq!(format(123), "123 B");
-        assert_eq!(format(1_230), "1.23 KB");
-        assert_eq!(format(1_230_000), "1.23 MB");
-        assert_eq!(format(1_230_000_000), "1.23 GB");
-        assert_eq!(format(1_230_000_000_000), "1.23 TB");
-        assert_eq!(format(1_230_000_000_000_000), "1.23 PB");
+        assert_eq!(format(123), "123B");
+        assert_eq!(format(1_230), "1.23KB");
+        assert_eq!(format(1_230_000), "1.23MB");
+        assert_eq!(format(1_230_000_000), "1.23GB");
+        assert_eq!(format(1_230_000_000_000), "1.23TB");
+        assert_eq!(format(1_230_000_000_000_000), "1.23PB");
     }
 
 
     #[test]
     fn test_format_to() {
-        assert_eq!(format_to(123, Unit::B), "123 B");
-        assert_eq!(format_to(1_245, Unit::KB), "1.25 KB");
-        assert_eq!(format_to(1_245_000, Unit::MB), "1.25 MB");
-        assert_eq!(format_to(1_245_000_000, Unit::GB), "1.25 GB");
-        assert_eq!(format_to(1_245_000_000_000, Unit::TB), "1.25 TB");
-        assert_eq!(format_to(1_245_000_000_000_000, Unit::PB), "1.25 PB");
-        assert_eq!(format_to(1_275, Unit::KIB), "1.25 KiB");
-        assert_eq!(format_to(1_306_525, Unit::MIB), "1.25 MiB");
-        assert_eq!(format_to(1_337_882_312, Unit::GIB), "1.25 GiB");
-        assert_eq!(format_to(1_369_991_488_208, Unit::TIB), "1.25 TiB");
-        assert_eq!(format_to(1_402_871_283_925_909, Unit::PIB), "1.25 PiB");
+        assert_eq!(format_to(123, Unit::B), "123B");
+        assert_eq!(format_to(1_245, Unit::KB), "1.25KB");
+        assert_eq!(format_to(1_245_000, Unit::MB), "1.25MB");
+        assert_eq!(format_to(1_245_000_000, Unit::GB), "1.25GB");
+        assert_eq!(format_to(1_245_000_000_000, Unit::TB), "1.25TB");
+        assert_eq!(format_to(1_245_000_000_000_000, Unit::PB), "1.25PB");
+        assert_eq!(format_to(1_275, Unit::KIB), "1.25KiB");
+        assert_eq!(format_to(1_306_525, Unit::MIB), "1.25MiB");
+        assert_eq!(format_to(1_337_882_312, Unit::GIB), "1.25GiB");
+        assert_eq!(format_to(1_369_991_488_208, Unit::TIB), "1.25TiB");
+        assert_eq!(format_to(1_402_871_283_925_909, Unit::PIB), "1.25PiB");
 
-        assert_eq!(format_to(500, Unit::KB), "0.5 KB");
-        assert_eq!(format_to(500_000, Unit::MB), "0.5 MB");
-        assert_eq!(format_to(500_000_000, Unit::GB), "0.5 GB");
-        assert_eq!(format_to(500_000_000_000, Unit::TB), "0.5 TB");
-        assert_eq!(format_to(500_000_000_000_000, Unit::PB), "0.5 PB");
-        assert_eq!(format_to(512, Unit::KIB), "0.5 KiB");
-        assert_eq!(format_to(524_288, Unit::MIB), "0.5 MiB");
-        assert_eq!(format_to(536_870_912, Unit::GIB), "0.5 GiB");
-        assert_eq!(format_to(549_755_813_888, Unit::TIB), "0.5 TiB");
-        assert_eq!(format_to(562_949_953_421_312, Unit::PIB), "0.5 PiB");
+        assert_eq!(format_to(500, Unit::KB), "0.5KB");
+        assert_eq!(format_to(500_000, Unit::MB), "0.5MB");
+        assert_eq!(format_to(500_000_000, Unit::GB), "0.5GB");
+        assert_eq!(format_to(500_000_000_000, Unit::TB), "0.5TB");
+        assert_eq!(format_to(500_000_000_000_000, Unit::PB), "0.5PB");
+        assert_eq!(format_to(512, Unit::KIB), "0.5KiB");
+        assert_eq!(format_to(524_288, Unit::MIB), "0.5MiB");
+        assert_eq!(format_to(536_870_912, Unit::GIB), "0.5GiB");
+        assert_eq!(format_to(549_755_813_888, Unit::TIB), "0.5TiB");
+        assert_eq!(format_to(562_949_953_421_312, Unit::PIB), "0.5PiB");
     }
 
     #[test]
     fn test_readme() {
-        let input = "1.23 MB";
+        let input = "1.23MB";
 
         // Parse string into bytes
         let bytes: u64 = parse(input).unwrap();
@@ -438,6 +438,6 @@ mod tests {
 
         // Format to specific unit
         let kb_str = format_to(bytes, Unit::KB);
-        assert_eq!(&kb_str, "1230 KB");
+        assert_eq!(&kb_str, "1230KB");
     }
 }
